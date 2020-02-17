@@ -101,7 +101,10 @@
   (live-sequencer (+ 200 (now))
                   200
                   live-pats)
+
   (stop)
+  ;; set the performance back to the original state
+  (reset! live-pats pats)
   ;; turn all the lights off:
   (midi-control launchpad-ctl 0 0))
 
