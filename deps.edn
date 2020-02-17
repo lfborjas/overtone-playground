@@ -1,0 +1,3 @@
+{:paths ["resources" "src"]
+ :deps {org.clojure/clojure {:mvn/version "1.10.1"}
+        overtone/overtone   {:mvn/version "0.10.6"}}}
