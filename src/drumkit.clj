@@ -25,7 +25,7 @@
 ;; And from:
 ;; https://github.com/overtone/overtone/wiki/Live-coding
 
-(definst kick [freq 120 dur 0.3 width 0.5]
+(definst kick2 [freq 120 dur 0.3 width 0.5]
   (let [freq-env (* freq (env-gen (perc 0 (* 0.99 dur))))
         env (env-gen (perc 0.01 dur) 1 1 0 1 FREE)
         sqr (* (env-gen (perc 0 0.01)) (pulse (* 2 freq) width))
@@ -41,7 +41,7 @@
     (* amp env filt)))
 
 (defn player [metro beat]
-  (at (metro beat) (kick))
+  (at (metro beat) (kick2))
   (at (metro (+ 0.5 beat)) (c-hat))
   (apply-by (metro (inc beat))
             #'player
@@ -52,5 +52,8 @@
 (player default-bpm (default-bpm))
 (stop)
 
+;; ideas: live sequencer from launchpad.clj, but using a :^dynamic metronome
+;; which can be made faster/slower with midi control events (by replacing
+;; the current definition of the metronome, or perhaps looking into an atom?
 
 
